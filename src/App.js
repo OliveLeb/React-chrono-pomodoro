@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Home from './components/Home';
 import Navigation from './components/Navigation';
 import Chrono from './components/Chrono';
 import Minuteur from './components/Minuteur';
 
-function App() {
+const App = () => {
   return (
     <Router>
       <Navigation />
@@ -23,6 +24,6 @@ function App() {
       </Switch>
     </Router>
   );
-}
+};
 
 export default App;

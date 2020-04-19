@@ -19,7 +19,6 @@ const Chrono2 = () => {
 
   useEffect(() => {
     let interval = null;
-
     if (isActive) {
       interval = setInterval(() => {
         setTime({
@@ -37,16 +36,31 @@ const Chrono2 = () => {
 
   return (
     <>
-      <div>Le Chrono</div>
+      <div>
+        <h1>Chrono</h1>
+      </div>
 
       <p></p>
-      <p>
-        {time.h} : {time.m} : {time.s} : {time.ms}
+      <p className='text-center h1'>
+        {time.h !== '00' && time.h !== 0 ? `${time.h} : ` : ''}
+        {time.m !== '00' && time.m !== 0 ? `${time.m} : ` : ''}
+        {time.s} : {time.ms}
       </p>
-      <button onClick={toggleIsActive}>
-        {isActive ? 'Pause' : !isActive && startTime !== 0 ? 'Resume' : 'Start'}
-      </button>
-      <button onClick={reset}>Reset</button>
+      <div className='d-flex justify-content-around'>
+        <button onClick={toggleIsActive} className='btn btn-primary'>
+          {isActive
+            ? 'Pause'
+            : !isActive && startTime !== 0
+            ? 'Resume'
+            : 'Start'}
+        </button>
+
+        {tiempo !== 0 ? (
+          <button onClick={reset} className='btn btn-secondary'>
+            Reset
+          </button>
+        ) : null}
+      </div>
     </>
   );
 };

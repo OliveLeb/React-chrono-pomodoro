@@ -3,10 +3,16 @@ import { NavLink } from 'react-router-dom';
 
 const Navigation = () => {
   return (
-    <nav>
-      <NavLink to='/'>Home</NavLink>
-      <NavLink to='/chrono'>Chrono</NavLink>
-      <NavLink to='/minuteur'>Minuteur</NavLink>
+    <nav className='navbar'>
+      <NavLink to='/' className='nav-item nav-link'>
+        Home
+      </NavLink>
+      <NavLink to='/chrono' className='nav-item nav-link'>
+        Chrono
+      </NavLink>
+      <NavLink to='/minuteur' className='nav-item nav-link'>
+        Minuteur
+      </NavLink>
     </nav>
   );
 };
