@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <>
       <div>Home</div>
-      <div>Sweet</div>
+      <div>Chronometrez vos perfs, programmez vos séances de sport !</div>
     </>
   );
 };

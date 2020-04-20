@@ -36,12 +36,12 @@ const Chrono2 = () => {
 
   return (
     <>
-      <div>
+      <div className='my-5 text-center'>
         <h1>Chrono</h1>
       </div>
 
       <p></p>
-      <p className='text-center h1'>
+      <p className='text-center h1 my-5'>
         {time.h !== '00' && time.h !== 0 ? `${time.h} : ` : ''}
         {time.m !== '00' && time.m !== 0 ? `${time.m} : ` : ''}
         {time.s} : {time.ms}
