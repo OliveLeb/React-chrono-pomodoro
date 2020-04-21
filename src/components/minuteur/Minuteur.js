@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './Minuteur.module.css';
 import bipSound from '../../sound/End.wav';
 import bipSound2 from '../../sound/Bleep.wav';
+import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 
 const Minuteur = () => {
   const [time, setTime] = useState({ m: 0, s: 30 });
@@ -31,6 +32,9 @@ const Minuteur = () => {
     setTime({ ...time, m: e.target.value });
     setTimeLeft({ ...time, m: e.target.value });
   };
+  const toggleSound = () => {
+    setSoundOn(!soundOn);
+  };
 
   useEffect(() => {
     let interval = null;
@@ -55,8 +59,9 @@ const Minuteur = () => {
 
     if (count / 2 <= laps) {
       if (isActive && timeLeft.m >= 0 && timeLeft.s > 0) {
-        if (timeLeft.m === 0 && timeLeft.s === 4) bip.current.play();
-        else if (timeLeft.m === 0 && timeLeft.s === 1) bip2.current.play();
+        if (timeLeft.m === 0 && timeLeft.s === 4 && soundOn) bip.current.play();
+        else if (timeLeft.m === 0 && timeLeft.s === 1 && soundOn)
+          bip2.current.play();
         interval =
           timeLeft.m >= 0 &&
           timeLeft.s >= 0 &&
@@ -91,12 +96,19 @@ const Minuteur = () => {
       stop();
     }
     return () => clearInterval(interval);
-  }, [isActive, time, sessionName, repos, timeLeft, count, laps]);
+  }, [isActive, time, sessionName, repos, timeLeft, count, laps, soundOn]);
 
   return (
     <>
-      <div>
+      <div className='d-flex justify-content-between mb-5 mx-3 mt-5'>
         <h1>Minuteur</h1>
+        <div onClick={toggleSound}>
+          {soundOn ? (
+            <FaVolumeUp className={styles.sound} />
+          ) : (
+            <FaVolumeMute className={styles.sound} />
+          )}
+        </div>
       </div>
       <div className='text-center'>
         <h3>{sessionName}</h3>
