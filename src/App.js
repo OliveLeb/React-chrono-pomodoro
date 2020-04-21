@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './components/Home';
 import Navigation from './components/Navigation';
 import Chrono from './components/Chrono';
-import Minuteur from './components/Minuteur';
+import Minuteur from './components/minuteur/Minuteur';
 
 const App = () => {
   return (

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styles from './Minuteur.module.css';
 
 const Minuteur = () => {
   const [time, setTime] = useState({ m: 0, s: 30 });
@@ -98,7 +99,7 @@ const Minuteur = () => {
         {timeLeft.m} : {timeLeft.s}
       </div>
 
-      <div className='text-center'>
+      <div className='text-center my-5'>
         <button onClick={toggleActive} className='btn btn-primary mx-2'>
           {isActive ? 'Pause' : 'Start'}
         </button>
@@ -107,44 +108,52 @@ const Minuteur = () => {
         </button>
       </div>
 
-      <div className='row m-5 justify-content-center'>
-        <div className='col-3 px-0'>
-          <input
-            type='number'
-            required
-            value={time.m}
-            onChange={changeTimeM}
-            className='form-control'
-          />
-        </div>
-        <div className='col-3 px-0'>
-          <input
-            type='number'
-            required
-            value={time.s}
-            onChange={changeTimeS}
-            className='form-control'
-          />
+      <div className='text-center m-5'>
+        Temps de travail
+        <div className='row justify-content-center'>
+          <div className='px-0'>
+            <input
+              type='number'
+              required
+              value={time.m}
+              onChange={changeTimeM}
+              className={styles.cadreTempsL}
+            />
+          </div>
+          <span className='mx-2'> : </span>
+          <div className='px-0'>
+            <input
+              type='number'
+              required
+              value={time.s}
+              onChange={changeTimeS}
+              className={styles.cadreTempsR}
+            />
+          </div>
         </div>
       </div>
 
       <div>
-        <div className='row m-5 justify-content-center'>
-          <div className='col-3 px-0'>
-            <input
-              type='number'
-              value={repos.m}
-              onChange={(e) => setRepos({ ...repos, m: e.target.value })}
-              className='form-control'
-            />
-          </div>
-          <div className='col-3 px-0'>
-            <input
-              type='number'
-              value={repos.s}
-              onChange={(e) => setRepos({ ...repos, s: e.target.value })}
-              className='form-control'
-            />
+        <div className='text-center m-5'>
+          Temps de repos
+          <div className='row justify-content-center'>
+            <div className='px-0'>
+              <input
+                type='number'
+                value={repos.m}
+                onChange={(e) => setRepos({ ...repos, m: e.target.value })}
+                className={styles.cadreTempsL}
+              />
+            </div>
+            <span className='mx-2'> : </span>
+            <div className='px-0'>
+              <input
+                type='number'
+                value={repos.s}
+                onChange={(e) => setRepos({ ...repos, s: e.target.value })}
+                className={styles.cadreTempsR}
+              />
+            </div>
           </div>
         </div>
         <div className='col text-center'>

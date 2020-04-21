@@ -1,0 +1,9 @@
+.cadreTempsR {
+  border: none;
+  width: 50px;
+}
+.cadreTempsL {
+  border: none;
+  text-align: right;
+  width: 50px;
+}
