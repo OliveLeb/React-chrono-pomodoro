@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Home from './components/Home';
 import Navigation from './components/Navigation';
+import Footer from './components/Footer';
 import Chrono from './components/Chrono';
 import Minuteur from './components/minuteur/Minuteur';
 
@@ -22,6 +23,7 @@ const App = () => {
           <Minuteur />
         </Route>
       </Switch>
+      <Footer />
     </Router>
   );
 };
