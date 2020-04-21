@@ -139,6 +139,7 @@ const Minuteur = () => {
               value={time.m}
               onChange={changeTimeM}
               className={styles.cadreTemps}
+              min='0'
             />
           </div>
           <span className='mx-2'> : </span>
@@ -149,6 +150,7 @@ const Minuteur = () => {
               value={time.s}
               onChange={changeTimeS}
               className={styles.cadreTemps}
+              min='0'
             />
           </div>
         </div>
@@ -164,6 +166,7 @@ const Minuteur = () => {
                 value={repos.m}
                 onChange={(e) => setRepos({ ...repos, m: e.target.value })}
                 className={styles.cadreTemps}
+                min='0'
               />
             </div>
             <span className='mx-2'> : </span>
@@ -173,6 +176,7 @@ const Minuteur = () => {
                 value={repos.s}
                 onChange={(e) => setRepos({ ...repos, s: e.target.value })}
                 className={styles.cadreTemps}
+                min='0'
               />
             </div>
           </div>
@@ -182,7 +186,11 @@ const Minuteur = () => {
           <div className='row justify-content-center'>
             <button
               className='btn btn-primary'
-              onClick={() => setLaps(laps - 1)}
+              onClick={() => {
+                if (laps > 0) {
+                  setLaps(laps - 1);
+                }
+              }}
             >
               {' '}
               -{' '}
@@ -192,6 +200,7 @@ const Minuteur = () => {
               value={laps}
               onChange={(e) => setLaps(e.target.value)}
               className='form-control col-2 mx-2 text-center'
+              min='0'
             />
             <button
               className='btn btn-primary'
