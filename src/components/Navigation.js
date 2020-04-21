@@ -1,19 +1,27 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import { Navbar, Nav } from 'react-bootstrap';
 const Navigation = () => {
   return (
-    <nav className='navbar'>
-      <NavLink to='/' className='nav-item nav-link'>
-        Home
-      </NavLink>
-      <NavLink to='/chrono' className='nav-item nav-link'>
-        Chrono
-      </NavLink>
-      <NavLink to='/minuteur' className='nav-item nav-link'>
-        Minuteur
-      </NavLink>
-    </nav>
+    <Navbar bg='light' expand='sm'>
+      <Navbar.Brand>
+        <NavLink to='/' className='nav-item nav-link'>
+          Home
+        </NavLink>
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls='basic-navbar-nav' />
+      <Navbar.Collapse id='basic-navbar-nav'>
+        <Nav className='mr-auto'>
+          <NavLink to='/chrono' className='nav-item nav-link'>
+            Chrono
+          </NavLink>
+
+          <NavLink to='/minuteur' className='nav-item nav-link'>
+            Minuteur
+          </NavLink>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 

@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './Minuteur.module.css';
+import bipSound from '../../sound/End.wav';
+import bipSound2 from '../../sound/Bleep.wav';
 
 const Minuteur = () => {
   const [time, setTime] = useState({ m: 0, s: 30 });
@@ -9,6 +11,9 @@ const Minuteur = () => {
   const [sessionName, setSessionName] = useState('Travail');
   const [timeLeft, setTimeLeft] = useState({ m: 0, s: 30 });
   const [count, setCount] = useState(1);
+  const [soundOn, setSoundOn] = useState(true);
+  const bip = useRef();
+  const bip2 = useRef();
 
   const toggleActive = () => {
     setIsActive(!isActive);
@@ -29,7 +34,7 @@ const Minuteur = () => {
 
   useEffect(() => {
     let interval = null;
-    console.log(count);
+
     const handleSwitch = () => {
       if (sessionName === 'Travail') {
         setSessionName('Repos');
@@ -47,8 +52,11 @@ const Minuteur = () => {
       setIsActive(false);
       setCount(1);
     };
+
     if (count / 2 <= laps) {
       if (isActive && timeLeft.m >= 0 && timeLeft.s > 0) {
+        if (timeLeft.m === 0 && timeLeft.s === 4) bip.current.play();
+        else if (timeLeft.m === 0 && timeLeft.s === 1) bip2.current.play();
         interval =
           timeLeft.m >= 0 &&
           timeLeft.s >= 0 &&
@@ -71,7 +79,6 @@ const Minuteur = () => {
               ...timeLeft,
               s: timeLeft.s - 1,
             });
-            console.log(count, 'pause');
           }
         }, 1000);
         handleSwitch();
@@ -95,7 +102,9 @@ const Minuteur = () => {
         <h3>{sessionName}</h3>
       </div>
 
-      <div className='text-center h2 my-5'>
+      <div
+        className={timeLeft.s <= 5 ? styles.currentTimeRed : styles.currentTime}
+      >
         {timeLeft.m} : {timeLeft.s}
       </div>
 
@@ -110,14 +119,14 @@ const Minuteur = () => {
 
       <div className='text-center m-5'>
         Temps de travail
-        <div className='row justify-content-center'>
+        <div className='row justify-content-center align-items-center'>
           <div className='px-0'>
             <input
               type='number'
               required
               value={time.m}
               onChange={changeTimeM}
-              className={styles.cadreTempsL}
+              className={styles.cadreTemps}
             />
           </div>
           <span className='mx-2'> : </span>
@@ -127,7 +136,7 @@ const Minuteur = () => {
               required
               value={time.s}
               onChange={changeTimeS}
-              className={styles.cadreTempsR}
+              className={styles.cadreTemps}
             />
           </div>
         </div>
@@ -136,13 +145,13 @@ const Minuteur = () => {
       <div>
         <div className='text-center m-5'>
           Temps de repos
-          <div className='row justify-content-center'>
+          <div className='row justify-content-center align-items-center'>
             <div className='px-0'>
               <input
                 type='number'
                 value={repos.m}
                 onChange={(e) => setRepos({ ...repos, m: e.target.value })}
-                className={styles.cadreTempsL}
+                className={styles.cadreTemps}
               />
             </div>
             <span className='mx-2'> : </span>
@@ -151,23 +160,41 @@ const Minuteur = () => {
                 type='number'
                 value={repos.s}
                 onChange={(e) => setRepos({ ...repos, s: e.target.value })}
-                className={styles.cadreTempsR}
+                className={styles.cadreTemps}
               />
             </div>
           </div>
         </div>
         <div className='col text-center'>
           Nombre de tours :
-          <input
-            type='number'
-            value={laps}
-            onChange={(e) => setLaps(e.target.value)}
-            className='form-control col-2 m-auto'
-          />
+          <div className='row justify-content-center'>
+            <button
+              className='btn btn-primary'
+              onClick={() => setLaps(laps - 1)}
+            >
+              {' '}
+              -{' '}
+            </button>
+            <input
+              type='number'
+              value={laps}
+              onChange={(e) => setLaps(e.target.value)}
+              className='form-control col-2 mx-2 text-center'
+            />
+            <button
+              className='btn btn-primary'
+              onClick={() => setLaps(laps + 1)}
+            >
+              {' '}
+              +{' '}
+            </button>
+          </div>
         </div>
         <p></p>
         <p></p>
       </div>
+      <audio ref={bip} src={bipSound}></audio>
+      <audio ref={bip2} src={bipSound2}></audio>
     </>
   );
 };
