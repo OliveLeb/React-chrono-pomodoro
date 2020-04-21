@@ -11,7 +11,7 @@ const Minuteur = () => {
   const [laps, setLaps] = useState(2);
   const [sessionName, setSessionName] = useState('Travail');
   const [timeLeft, setTimeLeft] = useState({ m: 0, s: 30 });
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
   const [soundOn, setSoundOn] = useState(true);
   const bip = useRef();
   const bip2 = useRef();
@@ -23,6 +23,7 @@ const Minuteur = () => {
     setIsActive(false);
     setTimeLeft({ ...time });
     setSessionName('Travail');
+    setCount(0);
   };
   const changeTimeS = (e) => {
     setTime({ ...time, s: e.target.value });
@@ -50,14 +51,14 @@ const Minuteur = () => {
     };
 
     const compteurTour = () => {
-      setCount(count + 1);
+      if (sessionName === 'Repos') setCount(count + 1);
     };
     const stop = () => {
       setIsActive(false);
-      setCount(1);
+      setCount(0);
     };
 
-    if (count / 2 <= laps) {
+    if (count < laps) {
       if (isActive && timeLeft.m >= 0 && timeLeft.s > 0) {
         if (timeLeft.m === 0 && timeLeft.s === 4 && soundOn) bip.current.play();
         else if (timeLeft.m === 0 && timeLeft.s === 1 && soundOn)
@@ -112,6 +113,7 @@ const Minuteur = () => {
       </div>
       <div className='text-center'>
         <h3>{sessionName}</h3>
+        {count + 1} / {laps}
       </div>
 
       <div
@@ -187,7 +189,7 @@ const Minuteur = () => {
             <button
               className='btn btn-primary'
               onClick={() => {
-                if (laps > 0) {
+                if (laps > 1) {
                   setLaps(laps - 1);
                 }
               }}
@@ -200,7 +202,7 @@ const Minuteur = () => {
               value={laps}
               onChange={(e) => setLaps(e.target.value)}
               className='form-control col-2 mx-2 text-center'
-              min='0'
+              min='1'
             />
             <button
               className='btn btn-primary'
