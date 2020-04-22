@@ -16,7 +16,12 @@ const Footer = () => {
     <div style={footerStyle}>
       <p>
         2020 - By{' '}
-        <a style={linkStyle} href='https://cv.lebelolivier.fr/'>
+        <a
+          style={linkStyle}
+          href='https://cv.lebelolivier.fr/'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
           Olivier Lebel
         </a>{' '}
         &copy;
