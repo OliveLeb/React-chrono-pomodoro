@@ -19,6 +19,9 @@ const Navigation = () => {
           <NavLink to='/minuteur' className='nav-item nav-link'>
             Minuteur
           </NavLink>
+          <NavLink to='/minuteur2' className='nav-item nav-link'>
+            Minuteur2
+          </NavLink>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

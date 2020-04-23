@@ -1,8 +1,6 @@
 import React from 'react';
 
 const footerStyle = {
-  position: 'absolute',
-  bottom: '0',
   width: '100%',
   textAlign: 'center',
   background: '#f6f7f8',

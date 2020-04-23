@@ -12,6 +12,7 @@ const Minuteur = () => {
   const [sessionName, setSessionName] = useState('Travail');
   const [timeLeft, setTimeLeft] = useState({ m: 0, s: 30 });
   const [count, setCount] = useState(0);
+
   const [soundOn, setSoundOn] = useState(true);
   const bip = useRef();
   const bip2 = useRef();
@@ -103,6 +104,7 @@ const Minuteur = () => {
     <>
       <div className='d-flex justify-content-between mb-5 mx-3 mt-5'>
         <h1>Minuteur</h1>
+        <p> Utilisation hooks useState</p>
         <div onClick={toggleSound}>
           {soundOn ? (
             <FaVolumeUp className={styles.sound} />
@@ -117,7 +119,11 @@ const Minuteur = () => {
       </div>
 
       <div
-        className={timeLeft.s <= 5 ? styles.currentTimeRed : styles.currentTime}
+        className={
+          timeLeft.s <= 5 && timeLeft.s === 0
+            ? styles.currentTimeRed
+            : styles.currentTime
+        }
       >
         {timeLeft.m} : {timeLeft.s}
       </div>
