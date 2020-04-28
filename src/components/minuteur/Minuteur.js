@@ -60,6 +60,7 @@ const Minuteur = () => {
     };
 
     if (count < laps) {
+      //  if (count >= laps) return;
       if (isActive && timeLeft.m >= 0 && timeLeft.s > 0) {
         if (timeLeft.m === 0 && timeLeft.s === 4 && soundOn) bip.current.play();
         else if (timeLeft.m === 0 && timeLeft.s === 1 && soundOn)
@@ -97,7 +98,10 @@ const Minuteur = () => {
       clearInterval(interval);
       stop();
     }
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      stop();
+    };
   }, [isActive, time, sessionName, repos, timeLeft, count, laps, soundOn]);
 
   return (

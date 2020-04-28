@@ -15,12 +15,12 @@ const Navigation = () => {
           <NavLink to='/chrono' className='nav-item nav-link'>
             Chrono
           </NavLink>
-
+          {/*
           <NavLink to='/minuteur' className='nav-item nav-link'>
             Minuteur
-          </NavLink>
+          </NavLink>*/}
           <NavLink to='/minuteur2' className='nav-item nav-link'>
-            Minuteur2
+            Minuteur
           </NavLink>
         </Nav>
       </Navbar.Collapse>

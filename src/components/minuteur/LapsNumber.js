@@ -5,8 +5,8 @@ import { StateContext, DispatchContext } from './Minuteur2';
 
 const LapsNumber = () => {
   const dispatch = useContext(DispatchContext);
-  const state = useContext(StateContext);
-  const { laps } = state;
+  const { laps } = useContext(StateContext);
+  // const { laps } = state;
 
   return (
     <div className='col text-center'>

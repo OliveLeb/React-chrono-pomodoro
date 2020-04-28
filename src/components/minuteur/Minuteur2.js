@@ -54,46 +54,38 @@ const Minuteur2 = () => {
     const compteurTour = () => {
       if (sessionName === 'Repos') setCount(dispatch);
     };
-    const stop = () => {
-      toggleActive(dispatch);
-      resetCount(dispatch);
-    };
 
-    if (count < laps) {
-      if (isActive && timeLeft.m >= 0 && timeLeft.s >= 0 && !isMinute) {
-        if (timeLeft.m === 0 && timeLeft.s === 4 && soundOn) bip.current.play();
-        else if (timeLeft.m === 0 && timeLeft.s === 1 && soundOn)
-          bip2.current.play();
-        interval =
-          timeLeft.m >= 0 &&
-          timeLeft.s >= 0 &&
-          setInterval(() => {
-            if (timeLeft.s > 0 && timeLeft.m >= 0) {
-              timeLeftSeconde(dispatch);
-            } else if (timeLeft.m > 0 && timeLeft.s === 0) {
-              timeLeftMinute(dispatch);
-            }
-          }, 1000);
-        if (timeLeft.m === 0 && timeLeft.s === 0) toggleMinute(dispatch);
-      } else if (isActive && timeLeft.m === 0 && timeLeft.s === 0 && isMinute) {
-        interval = setInterval(() => {
-          if (timeLeft.s === 0 && timeLeft.m >= 0) {
-            timeLeftMinute(dispatch);
-          } else {
-            timeLeftSeconde(dispatch);
-          }
+    if (count >= laps) return;
+    if (isActive && timeLeft.m >= 0 && timeLeft.s >= 0 && !isMinute) {
+      if (timeLeft.m === 0 && timeLeft.s === 4 && soundOn) bip.current.play();
+      else if (timeLeft.m === 0 && timeLeft.s === 1 && soundOn)
+        bip2.current.play();
+      interval =
+        timeLeft.m >= 0 &&
+        timeLeft.s >= 0 &&
+        setInterval(() => {
+          if (timeLeft.s > 0 && timeLeft.m >= 0)
+            return timeLeftSeconde(dispatch);
+          if (timeLeft.m > 0 && timeLeft.s === 0)
+            return timeLeftMinute(dispatch);
         }, 1000);
-        toggleMinute(dispatch);
-        handleSwitch();
-        compteurTour();
-      } else {
-        clearInterval(interval);
-      }
+      if (timeLeft.m === 0 && timeLeft.s === 0) toggleMinute(dispatch);
+    } else if (isActive && timeLeft.m === 0 && timeLeft.s === 0 && isMinute) {
+      interval = setInterval(() => {
+        if (timeLeft.s === 0 && timeLeft.m >= 0)
+          return timeLeftMinute(dispatch);
+        return timeLeftSeconde(dispatch);
+      }, 1000);
+      toggleMinute(dispatch);
+      handleSwitch();
+      compteurTour();
     } else {
       clearInterval(interval);
-      stop();
     }
-    return () => clearInterval(interval);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, [timeLeft, isActive, count, laps, soundOn, sessionName, time, isMinute]);
 
   return (
