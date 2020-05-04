@@ -35,8 +35,8 @@ const Chrono2 = () => {
   }, [isActive, startTime, time, tiempo]);
 
   return (
-    <>
-      <div className='my-5 text-center'>
+    <div style={{ minHeight: 'calc(100vh - (24px + 72px)' }}>
+      <div className='pt-5 text-center'>
         <h1>Chrono</h1>
       </div>
 
@@ -61,7 +61,7 @@ const Chrono2 = () => {
           </button>
         ) : null}
       </div>
-    </>
+    </div>
   );
 };
 

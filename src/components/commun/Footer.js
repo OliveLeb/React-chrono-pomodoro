@@ -12,7 +12,7 @@ const linkStyle = {
 const Footer = () => {
   return (
     <div style={footerStyle}>
-      <p>
+      <p style={{ margin: '0' }}>
         2020 - By{' '}
         <a
           style={linkStyle}

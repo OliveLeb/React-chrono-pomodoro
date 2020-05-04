@@ -106,7 +106,7 @@ const Minuteur = () => {
 
   return (
     <>
-      <div className='d-flex justify-content-between mb-5 mx-3 mt-5'>
+      <div className='d-flex justify-content-between mb-5 mx-3 mt-5 fullPage'>
         <h1>Minuteur</h1>
         <p> Utilisation hooks useState</p>
         <div onClick={toggleSound}>

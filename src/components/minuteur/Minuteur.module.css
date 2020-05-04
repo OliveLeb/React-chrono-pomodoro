@@ -19,3 +19,6 @@
 .sound {
   font-size: 1.5rem;
 }
+.fullPage {
+  min-height: calc(100vh - (24px + 72px));
+}

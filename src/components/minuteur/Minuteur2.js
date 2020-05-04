@@ -91,8 +91,8 @@ const Minuteur2 = () => {
   return (
     <DispatchContext.Provider value={dispatch}>
       <StateContext.Provider value={state}>
-        <>
-          <div className='d-flex justify-content-between mb-5 mx-3 mt-5'>
+        <div style={{ minHeight: 'calc(100vh - (24px + 72px)' }}>
+          <div className='d-flex justify-content-between mb-5 mx-3 pt-5'>
             <h1>Minuteur</h1>
             <p>
               {' '}
@@ -139,7 +139,7 @@ const Minuteur2 = () => {
           <LapsNumber />
           <audio ref={bip} src={bipSound}></audio>
           <audio ref={bip2} src={bipSound2}></audio>
-        </>
+        </div>
       </StateContext.Provider>
     </DispatchContext.Provider>
   );
