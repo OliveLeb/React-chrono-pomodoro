@@ -16,19 +16,19 @@ const MinuteurReducer = (state, action) => {
     case 'WORK_MINUTE':
       return {
         ...state,
-        time: { ...state.time, m: action.value },
-        timeLeft: { ...state.timeLeft, m: action.value },
+        time: { ...state.time, m: parseInt(action.value) },
+        timeLeft: { ...state.timeLeft, m: parseInt(action.value) },
       };
     case 'WORK_SECONDE':
       return {
         ...state,
-        time: { ...state.time, s: action.value },
-        timeLeft: { ...state.timeLeft, s: action.value },
+        time: { ...state.time, s: parseInt(action.value) },
+        timeLeft: { ...state.timeLeft, s: parseInt(action.value) },
       };
     case 'REPOS_MINUTE':
-      return { ...state, repos: { ...state.repos, m: action.value } };
+      return { ...state, repos: { ...state.repos, m: parseInt(action.value) } };
     case 'REPOS_SECONDE':
-      return { ...state, repos: { ...state.repos, s: action.value } };
+      return { ...state, repos: { ...state.repos, s: parseInt(action.value) } };
     case 'TIMELEFT_MINUTE':
       return { ...state, timeLeft: { m: state.timeLeft.m - 1, s: 60 - 1 } };
     case 'TIMELEFT_SECONDE':
@@ -41,7 +41,7 @@ const MinuteurReducer = (state, action) => {
     case 'INIT_TIMELEFT_REPOS':
       return { ...state, timeLeft: { ...state.repos } };
     case 'LAPS_NUMBER':
-      return { ...state, laps: action.value };
+      return { ...state, laps: parseInt(action.value) };
     case 'INC_LAPS':
       return { ...state, laps: state.laps + 1 };
     case 'DEC_LAPS':

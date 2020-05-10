@@ -12,7 +12,6 @@ import {
   toggleActive,
   switchRepos,
   switchTravail,
-  resetCount,
   timeLeftSeconde,
   timeLeftMinute,
   reset,
@@ -57,17 +56,15 @@ const Minuteur2 = () => {
 
     if (count >= laps) return;
     if (isActive && timeLeft.m >= 0 && timeLeft.s >= 0 && !isMinute) {
-      if (timeLeft.m === 0 && timeLeft.s === 4 && soundOn) bip.current.play();
-      else if (timeLeft.m === 0 && timeLeft.s === 1 && soundOn)
-        bip2.current.play();
       interval =
         timeLeft.m >= 0 &&
         timeLeft.s >= 0 &&
         setInterval(() => {
+          if (timeLeft.m > 0 && timeLeft.s <= 0)
+            return timeLeftMinute(dispatch);
+
           if (timeLeft.s > 0 && timeLeft.m >= 0)
             return timeLeftSeconde(dispatch);
-          if (timeLeft.m > 0 && timeLeft.s === 0)
-            return timeLeftMinute(dispatch);
         }, 1000);
       if (timeLeft.m === 0 && timeLeft.s === 0) toggleMinute(dispatch);
     } else if (isActive && timeLeft.m === 0 && timeLeft.s === 0 && isMinute) {
@@ -92,12 +89,9 @@ const Minuteur2 = () => {
     <DispatchContext.Provider value={dispatch}>
       <StateContext.Provider value={state}>
         <div style={{ minHeight: 'calc(100vh - (24px + 72px)' }}>
-          <div className='d-flex justify-content-between mb-5 mx-3 pt-5'>
+          <div className='d-flex justify-content-between mb-5 mx-3 '>
             <h1>Minuteur</h1>
-            <p>
-              {' '}
-              Utilisation hooks useReducer et React.createContext, useContext
-            </p>
+
             <div onClick={toggleSound}>
               {soundOn ? (
                 <FaVolumeUp className={styles.sound} />
