@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { lapsNumber, decLaps, incLaps } from '../../actions/MinuteurActions';
 //import styles from './Minuteur.module.css';
-import { StateContext, DispatchContext } from './Minuteur2';
+import { StateContext, DispatchContext } from './Minuteur';
 
 const LapsNumber = () => {
   const dispatch = useContext(DispatchContext);

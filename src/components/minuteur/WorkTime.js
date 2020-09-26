@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { workMinute, workSeconde } from '../../actions/MinuteurActions';
 import styles from './Minuteur.module.css';
-import { StateContext, DispatchContext } from './Minuteur2';
+import { StateContext, DispatchContext } from './Minuteur';
 
 const WorkTime = () => {
   const dispatch = useContext(DispatchContext);

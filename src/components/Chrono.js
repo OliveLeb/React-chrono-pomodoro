@@ -27,7 +27,9 @@ const Chrono2 = () => {
           s: ('0' + Math.floor((Date.now() - tiempo) / 1000)).slice(-2),
           ms: ('0' + Math.floor((Date.now() - tiempo) / 10)).slice(-2),
         });
+        //if (time.s >= 60) setTime(...time, (time.s = 0));
       }, 100);
+      //if (time.s >= 60) setTime(...time, (time.s = 0));
     } else if (!isActive && startTime !== 0) {
       clearInterval(interval);
     }

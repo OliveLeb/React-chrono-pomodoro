@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { reposMinute, reposSeconde } from '../../actions/MinuteurActions';
 import styles from './Minuteur.module.css';
-import { StateContext, DispatchContext } from './Minuteur2';
+import { StateContext, DispatchContext } from './Minuteur';
 
 const ReposTime = () => {
   const dispatch = useContext(DispatchContext);
