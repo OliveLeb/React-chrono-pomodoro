@@ -1,27 +1,32 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Navbar, Nav } from 'react-bootstrap';
 
 const Navigation = () => {
+
+
+
+
   return (
-    <Navbar bg='light' expand='sm'>
-      <Navbar.Brand>
-        <NavLink to='/' className='nav-item nav-link'>
-          Home
-        </NavLink>
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls='basic-navbar-nav' />
-      <Navbar.Collapse id='basic-navbar-nav'>
-        <Nav className='mr-auto'>
-          <NavLink to='/chrono' className='nav-item nav-link'>
-            Chrono
-          </NavLink>
-          <NavLink to='/minuteur' className='nav-item nav-link'>
-            Minuteur
-          </NavLink>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+
+    <header style={{padding:'10px 0'}}>
+      <nav>
+        <ul style={{display:'flex',marginBottom:0,fontSize:'1.2rem'}}>
+          <li> 
+            <NavLink to='/chrono' className='nav-item nav-link'>
+              Chrono
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to='/minuteur' className='nav-item nav-link'>
+              Minuteur
+            </NavLink>
+          </li>
+        </ul>
+       
+            
+      </nav>
+    </header>
+    
   );
 };
 

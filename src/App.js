@@ -1,8 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Home from './components/Home';
 import Navigation from './components/commun/Navigation';
 import Footer from './components/commun/Footer';
 import Chrono from './components/Chrono';
@@ -14,7 +13,7 @@ const App = () => {
       <Navigation />
       <Switch>
         <Route path='/' exact>
-          <Home />
+          <Redirect to='/chrono'/>
         </Route>
         <Route path='/chrono'>
           <Chrono />

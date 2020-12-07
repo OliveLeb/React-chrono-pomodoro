@@ -1,12 +1,10 @@
 import React, { useContext } from 'react';
 import { lapsNumber, decLaps, incLaps } from '../../actions/MinuteurActions';
-//import styles from './Minuteur.module.css';
 import { StateContext, DispatchContext } from './Minuteur';
 
 const LapsNumber = () => {
   const dispatch = useContext(DispatchContext);
   const { laps } = useContext(StateContext);
-  // const { laps } = state;
 
   return (
     <div className='col text-center'>

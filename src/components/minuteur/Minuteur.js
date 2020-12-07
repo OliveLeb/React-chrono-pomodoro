@@ -23,7 +23,6 @@ export const DispatchContext = React.createContext();
 
 const Minuteur = () => {
   const [soundOn, setSoundOn] = useState(true);
-  //const [isMinute, setIsMinute] = useState(false);
   const bip = useRef();
   const bip2 = useRef();
   const [state, dispatch] = useReducer(MinuteurReducer, initialState);
@@ -43,6 +42,8 @@ const Minuteur = () => {
 
   useEffect(() => {
     let interval = null;
+
+    document.title = "Pomodoro Timer";
 
     const handleSwitch = () => {
       if (sessionName === 'Travail') {
@@ -88,8 +89,8 @@ const Minuteur = () => {
   return (
     <DispatchContext.Provider value={dispatch}>
       <StateContext.Provider value={state}>
-        <div style={{ minHeight: 'calc(100vh - (24px + 72px)' }}>
-          <div className='d-flex justify-content-between mb-5 mx-3 '>
+        <div style={{ minHeight: 'calc(100vh - (24px + 64px))' }}>
+          <div className='d-flex justify-content-between mb-4 mx-3 '>
             <h1>Minuteur</h1>
 
             <div onClick={toggleSound}>
